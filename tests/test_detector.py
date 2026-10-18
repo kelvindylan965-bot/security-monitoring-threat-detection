@@ -46,5 +46,15 @@ class DetectorTests(unittest.TestCase):
         self.assertIn("Failed login events parsed: 0", output)
 
 
+
+    def test_failures_outside_five_minute_window_do_not_alert(self):
+        log = "\\n".join([
+            "2026-10-18T10:00:00Z host sshd[1]: Failed password for admin from 198.51.100.25 port 51001 ssh2",
+            "2026-10-18T10:03:00Z host sshd[2]: Failed password for admin from 198.51.100.25 port 51002 ssh2",
+            "2026-10-18T10:06:00Z host sshd[3]: Failed password for admin from 198.51.100.25 port 51003 ssh2",
+        ]) + "\\n"
+        output = self.run_detector(log)
+        self.assertIn("No sources reached the alert threshold.", output)
+
 if __name__ == "__main__":
     unittest.main()
