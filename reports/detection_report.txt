@@ -1,0 +1,15 @@
+SECURITY MONITORING REPORT
+============================
+Input log: logs/auth_sample.log
+Successful login events: 2
+Failed login events parsed: 4
+Unparsed failed-login events: 0
+Unique source IPs with failures: 2
+Alert threshold: 3 failures per source IP
+
+FAILED LOGIN COUNTS
+198.51.100.25: 3
+203.0.113.50: 1
+
+ALERTS
+WARNING: 198.51.100.25 generated 3 failed login attempts.
