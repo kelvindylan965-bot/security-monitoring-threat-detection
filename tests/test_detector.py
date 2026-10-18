@@ -56,5 +56,17 @@ class DetectorTests(unittest.TestCase):
         output = self.run_detector(log)
         self.assertIn("No sources reached the alert threshold.", output)
 
+
+    def test_malformed_log_line_does_not_crash(self):
+        output = self.run_detector("this is not a valid authentication log\\n")
+        self.assertIn("Unparsed failed-login events: 0", output)
+        self.assertIn("No sources reached the alert threshold.", output)
+
+    def test_invalid_timestamp_is_counted_as_unparsed(self):
+        log = "NOT-A-TIME host sshd[1]: Failed password for admin from 198.51.100.25 port 51001 ssh2\\n"
+        output = self.run_detector(log)
+        self.assertIn("Unparsed failed-login events: 1", output)
+        self.assertIn("No sources reached the alert threshold.", output)
+
 if __name__ == "__main__":
     unittest.main()
