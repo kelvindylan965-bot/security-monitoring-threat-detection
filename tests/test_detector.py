@@ -26,7 +26,7 @@ class DetectorTests(unittest.TestCase):
             for i in range(3)
         )
         output = self.run_detector(log)
-        self.assertIn("198.51.100.25 generated 3 failed login attempts", output)
+        self.assertIn("198.51.100.25 reached 3 failures within the time window", output)
 
     def test_single_failure_does_not_trigger_alert(self):
         log = (
