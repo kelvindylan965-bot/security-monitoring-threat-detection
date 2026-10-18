@@ -1,14 +1,12 @@
 SECURITY MONITORING REPORT
 ============================
-Input log: logs/auth_sample.log
-Successful login events: 2
-Failed login events parsed: 4
+Input log: /tmp/tmpz3xo1vbt/auth.log
+Successful login events: 1
+Failed login events parsed: 0
 Unparsed failed-login events: 0
 Alert threshold: 3 failures within 300 seconds
 
 FAILED LOGIN COUNTS
-198.51.100.25: 3
-203.0.113.50: 1
 
 ALERTS
-WARNING: 198.51.100.25 reached 3 failures within the time window.
+No sources reached the alert threshold.
